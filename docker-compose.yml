@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-muying
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: muying
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  superset:
+    image: apache/superset:latest-dev
+    container_name: superset
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./superset_config.py:/app/pythonpath/superset_config.py
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
