@@ -1,25 +1,25 @@
 # 母婴零售用户行为分析
 
-基于 82 万订单、26 万会员、162 万访问记录，完成从数据清洗、数据库建模，到 BI 可视化与 RFM 用户分层的全流程。
+基于 82 万订单、26 万会员、104万访问记录，完成从数据清洗、数据库建模，到 BI 可视化与 RFM 用户分层的全流程。
+
 
 ## 看板预览
 
 ![Dashboard](docs/screenshots/dashboard.png)
 
-完整看板包含 11 张图：省份分布、城市等级、门店销售、性别、宝宝年龄段、访问时段、月度分析、营销活动、订单类型、RF 分析、RFM 热力图。
-
+完整看板包含 18 张图，覆盖用户、商品、渠道、关联四个维度。
 ## 数据来源
 
 本数据集来自和鲸社区（heywhale.com），搜索"母婴零售数据集清洗版本"。
 
-- **原始数据**：3 个 CSV（会员、订单、流量）
-- **数据量**：82 万订单、26 万会员、162 万访问
+- **原始数据**：6 个 CSV（会员、订单、流量、商品、门店、连带订单）
+- **数据量**：82 万订单、26 万会员、104 万访问
 - **数据时间**：2021 年
 
 **下载方式：**
 1. 打开 heywhale.com
 2. 搜索"母婴零售数据集清洗版本"
-3. 下载 3 个 CSV
+3. 下载 6 个 CSV
 4. 放到 `data/raw/` 目录
 
 ## 技术栈
@@ -37,23 +37,29 @@
 3. **访问高峰**：10 点、15 点、20 点
 4. **销售波动**：大促后必跌
 5. **RFM**：76% 用户流失（R=1）
+6. **商品**：奶粉占 58% 销售额，飞鹤是第一名
+7. **关联**：3段奶粉 × 婴童服饰客单价 4220
+8. **渠道**：社区服务店占 58% 销售额
 
 ## 项目结构
 ```
 muying-retail-analysis/
 ├── data/
-│ ├── raw/ # 原始 CSV（需自行下载）
-│ └── processed/ # 清洗后
+│   ├── raw/              # 原始 CSV（需自行下载）
+│   └── processed/        # 清洗后
 ├── etl/
-│ └── clean.py
+│   └── clean.py
 ├── db/
-│ ├── schema.sql
-│ └── load_to_pg.py
+│   ├── schema.sql
+│   └── load_to_pg.py
 ├── analysis/
-│ └── rfm.py
+│   ├── rfm.py
+│   ├── churn_model.py
+│   └── sql/              # 所有分析 SQL
 ├── docs/
-│ ├── analysis_report.md
-│ └── data_dictionary.md
+│   ├── analysis_report.md
+│   ├── data_dictionary.md
+│   └── analysis_modules.md
 ├── docker-compose.yml
 ├── superset_config.py
 ├── .env
