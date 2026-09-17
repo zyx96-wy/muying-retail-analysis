@@ -39,7 +39,7 @@
 5. **RFM**：76% 用户流失（R=1）
 
 ## 项目结构
-
+```
 muying-retail-analysis/
 ├── data/
 │ ├── raw/ # 原始 CSV（需自行下载）
@@ -58,6 +58,7 @@ muying-retail-analysis/
 ├── superset_config.py
 ├── .env
 └── README.md
+```
 
 
 ## 环境要求与快速开始
@@ -66,11 +67,11 @@ muying-retail-analysis/
 
 建议使用 Anaconda 创建独立环境：
 
-bash
+```bash
 conda create -n muying python=3.11 -y
 conda activate muying
 pip install pandas openpyxl psycopg2-binary sqlalchemy
-
+```
 
 ### 2. Docker Desktop
 
@@ -81,11 +82,10 @@ pip install pandas openpyxl psycopg2-binary sqlalchemy
 
 **验证安装：**
 
-bash
+```bash
 docker --version
 docker run hello-world
-
-
+```
 看到 "Hello from Docker!" 信息即表示安装成功。
 
 ### 3. 下载数据
@@ -100,9 +100,9 @@ docker run hello-world
 
 在项目根目录执行：
 
-bash
+```bash
 python etl/clean.py
-
+```
 
 此步骤会处理原始数据中的缺失值、重复记录、格式不一致等问题，输出到 `data/processed/` 目录。
 
@@ -110,9 +110,9 @@ python etl/clean.py
 
 在项目根目录执行：
 
-bash
+```bash
 docker compose up -d
-
+```
 
 这会启动配置好的 PostgreSQL 数据库和 Apache Superset 服务。
 
@@ -120,43 +120,43 @@ docker compose up -d
 
 执行以下命令初始化 Superset，创建管理员账户并升级数据库：
 
-bash
+```bash
 
-创建管理员用户
+# 创建管理员用户
 docker exec -it superset superset fab create-admin --username admin --firstname Admin --lastname User --email admin@example.com --password admin
 
-升级数据库结构
+# 升级数据库结构
 docker exec -it superset superset db upgrade
 
-初始化角色和权限
+# 初始化角色和权限
 docker exec -it superset superset init
-
+```
 
 ### 7. 建表并导入数据
 
 将数据库表结构导入 PostgreSQL 并加载清洗后的数据：
 
-bash
+```bash
 
-导入数据库 Schema（Windows PowerShell）
+# 导入数据库 Schema（Windows PowerShell）
 Get-Content db\schema.sql | docker exec -i postgres-muying psql -U postgres -d muying
 
-执行 Python 脚本将数据导入数据库
+# 执行 Python 脚本将数据导入数据库
 python db/load_to_pg.py
-
+```
 
 > **注意**：如果使用的是 Linux/macOS 或 Git Bash，请将 `Get-Content` 替换为 `cat`：
 > 
-bash
+```bash
 
 cat db/schema.sql | docker exec -i postgres-muying psql -U postgres -d muying
 
-
+```
 ### 8. 执行 RFM 分析
 
-bash
+```bash
 python analysis/rfm.py
-
+```
 
 ### 9. 访问 Superset 看板
 
