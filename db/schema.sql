@@ -40,6 +40,36 @@ CREATE TABLE traffic (
     weekday INT
 );
 
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS stores CASCADE;
+DROP TABLE IF EXISTS related_orders CASCADE;
+
+CREATE TABLE products (
+    product_id VARCHAR(64) PRIMARY KEY,
+    category_l1 VARCHAR(32),
+    category_l2 VARCHAR(32),
+    brand VARCHAR(64)
+);
+
+CREATE TABLE stores (
+    store_type VARCHAR(32),
+    store_id VARCHAR(16) PRIMARY KEY
+);
+
+CREATE TABLE related_orders (
+    member_id VARCHAR(32),
+    baby_age VARCHAR(16),
+    order_date DATE,
+    product_id VARCHAR(64),
+    order_id VARCHAR(64),
+    store_id VARCHAR(16),
+    amount NUMERIC(10, 2),
+    order_type VARCHAR(16),
+    campaign_type VARCHAR(16),
+    scene VARCHAR(16)
+);
+
+CREATE INDEX idx_related_member ON related_orders(member_id);
 CREATE INDEX idx_orders_member ON orders(member_id);
 CREATE INDEX idx_orders_date ON orders(order_date);
 CREATE INDEX idx_traffic_member ON traffic(member_id);

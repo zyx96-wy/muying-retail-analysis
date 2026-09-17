@@ -39,4 +39,29 @@ df.columns = ["member_id", "visit_date", "visit_hour", "scene_id", "pv",
 df.to_sql("traffic", engine, if_exists="append", index=False)
 print(f"traffic: {len(df)} 行")
 
+
+# ============ churn_prediction ============
+df = pd.read_csv(OUT / "churn_prediction.csv", dtype={"会员编码": str})
+df.columns = ["member_id", "frequency", "monetary", "avg_amount",
+              "lifespan_days", "last_order_date", "is_churn", "churn_prob"]
+df.to_sql("churn_prediction", engine, if_exists="replace", index=False)
+print(f"churn_prediction: {len(df)} 行")
+
+# ============ products ============
+df = pd.read_csv(OUT / "products.csv")
+df.to_sql("products", engine, if_exists="replace", index=False)
+print(f"products: {len(df)} 行")
+
+# ============ stores ============
+df = pd.read_csv(OUT / "stores.csv")
+df.to_sql("stores", engine, if_exists="replace", index=False)
+print(f"stores: {len(df)} 行")
+
+# ============ related_orders ============
+df = pd.read_csv(OUT / "related_orders.csv", dtype={
+    "member_id": str, "product_id": str, "order_id": str, "store_id": str
+})
+df.to_sql("related_orders", engine, if_exists="replace", index=False)
+print(f"related_orders: {len(df)} 行")
+
 print("导入完成")
