@@ -124,9 +124,9 @@ AI（大脑） 实验平台（法庭）
 
 ## 项目文档
 
-- [完整分析报告](docs/analysis_report.md) —— 数据方法与核心发现
-- [PRD v1.0](docs/PRD.md) —— 营销策略平台需求文档（圈人 → 配策略 → 执行 → 回收）
-- [数据字典](docs/data_dictionary.md) —— 字段说明与数据口径
+- [完整分析报告](analysis_report.md) —— 数据方法与核心发现
+- [PRD v1.0](PRD.md) —— 营销策略平台需求文档（圈人 → 配策略 → 执行 → 回收）
+- [数据字典](data_dictionary.md) —— 字段说明与数据口径
 
 ## License
 
