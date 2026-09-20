@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实验中心 - 母婴零售策略实验平台</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+    .header { background: #2d4d8c; color: white; padding: 15px 30px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .header .btn-create { background: #ff7a45; color: white; border: none; padding: 10px 22px; border-radius: 6px; font-size: 14px; cursor: pointer; text-decoration: none; font-weight: normal; }
+    .header .btn-create:hover { background: #ff8f61; }
+    .container { padding: 20px 30px; max-width: 1280px; margin: 0 auto; }
+
+    /* 概览卡片 */
+    .stats-cards { display: flex; gap: 20px; margin-bottom: 24px; }
+    .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); flex: 1; }
+    .card .num { font-size: 26px; font-weight: bold; color: #ff7a45; }
+    .card .title { font-size: 13px; color: #888; margin-top: 4px; }
+
+    /* 筛选栏 */
+    .filter-bar { background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 12px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .filter-bar select, .filter-bar input { padding: 8px 12px; border: 1px solid #d9d9d9; border-radius: 6px; font-size: 13px; }
+    .filter-bar input { width: 260px; }
+
+    /* 表格 */
+    .table-container { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .table-container h3 { margin-bottom: 15px; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px 10px; background: #fafafa; border-bottom: 2px solid #eee; font-size: 13px; color: #555; }
+    td { padding: 14px 10px; border-bottom: 1px solid #f0f0f0; font-size: 13px; vertical-align: middle; }
+    tr:hover { background: #fffaf7; }
+    .exp-name { color: #2d4d8c; font-weight: bold; cursor: pointer; text-decoration: none; }
+    .tag { padding: 3px 10px; border-radius: 12px; font-size: 12px; display: inline-block; white-space: nowrap; }
+    .tag-type { background: #fff3e0; color: #ff7a45; }
+    .tag-running { background: #e6f7ff; color: #1890ff; }
+    .tag-done { background: #f6ffed; color: #52c41a; }
+    .tag-review { background: #fffbe6; color: #faad14; }
+    .progress-wrap { background: #f0f0f0; border-radius: 10px; height: 8px; width: 120px; display: inline-block; vertical-align: middle; margin-right: 8px; }
+    .progress-bar { background: linear-gradient(90deg, #ff9a76, #ff7a45); height: 100%; border-radius: 10px; }
+    a.detail-link { color: #1890ff; text-decoration: none; margin-right: 10px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <span>🧪 实验中心 · 营销策略实验管理</span>
+    <a class="btn-create" href="create-experiment.html">+ 创建实验</a>
+</div>
+
+<div class="container">
+
+    <!-- 概览卡片 -->
+    <div class="stats-cards">
+        <div class="card"><div class="num">3</div><div class="title">进行中实验</div></div>
+        <div class="card"><div class="num">12</div><div class="title">已完成实验</div></div>
+        <div class="card"><div class="num">9</div><div class="title">已验证沉淀策略</div></div>
+        <div class="card"><div class="num">64%</div><div class="title">活跃用户实验覆盖率</div></div>
+    </div>
+
+    <!-- 筛选栏 -->
+    <div class="filter-bar">
+        <select><option>全部状态</option><option>进行中</option><option>已结束</option><option>待审核</option></select>
+        <select><option>全部类型</option><option>发券策略</option><option>文案推送</option><option>商品推荐</option></select>
+        <input placeholder="搜索实验名称或编号...">
+    </div>
+
+    <!-- 实验列表 -->
+    <div class="table-container">
+        <h3>实验列表</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>实验名称 / 编号</th>
+                    <th>策略类型</th>
+                    <th>圈选人群</th>
+                    <th>分组</th>
+                    <th>状态</th>
+                    <th>核心指标进度</th>
+                    <th>负责人</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a class="exp-name" href="#detail">高价值流失唤回实验<br><small style="color:#999;">#EXP-2024-001</small></a></td>
+                    <td><span class="tag tag-type">发券</span></td>
+                    <td>高价值预流失<br><small style="color:#999;">2,600人</small></td>
+                    <td>A / B / C</td>
+                    <td><span class="tag tag-running">🟢 进行中 · 第7天</span></td>
+                    <td><span class="progress-wrap"><span class="progress-bar" style="width:65%;"></span></span>24.5% vs 6.8%</td>
+                    <td>林雅</td>
+                    <td><a class="detail-link" href="#detail">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="exp-name" href="#detail">待产新客首单转化实验<br><small style="color:#999;">#EXP-2024-002</small></a></td>
+                    <td><span class="tag tag-type">发券</span></td>
+                    <td>注册未首单待产妈妈<br><small style="color:#999;">3,850人</small></td>
+                    <td>A / B</td>
+                    <td><span class="tag tag-running">🟢 进行中 · 第3天</span></td>
+                    <td><span class="progress-wrap"><span class="progress-bar" style="width:25%;"></span></span>累计中</td>
+                    <td>林雅</td>
+                    <td><a class="detail-link" href="#detail">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="exp-name" href="#detail">辅食期品类渗透实验<br><small style="color:#999;">#EXP-2024-003</small></a></td>
+                    <td><span class="tag tag-type">商品推荐</span></td>
+                    <td>宝宝11-14个月客群<br><small style="color:#999;">17,140人</small></td>
+                    <td>A / B / C</td>
+                    <td><span class="tag tag-review">🟡 待审核</span></td>
+                    <td>—</td>
+                    <td>林雅</td>
+                    <td><a class="detail-link" href="#detail">查看</a></td>
+                </tr>
+                <tr>
+                    <td><a class="exp-name" href="#detail">敏感肌宝宝内容文案测试<br><small style="color:#999;">#EXP-2024-004</small></a></td>
+                    <td><span class="tag tag-type">文案推送</span></td>
+                    <td>敏感肌标签用户<br><small style="color:#999;">8,920人</small></td>
+                    <td>A / B</td>
+                    <td><span class="tag tag-done">✅ 已结束</span></td>
+                    <td><span class="progress-wrap"><span class="progress-bar" style="width:100%;"></span></span>点击率 +4.2pct ✅显著</td>
+                    <td>林雅</td>
+                    <td><a class="detail-link" href="#detail">查看</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 实验详情 -->
+    <div class="table-container" id="detail" style="margin-top:24px;">
+        <h3>📊 实验详情：高价值流失唤回实验 #EXP-2024-001 <span class="tag tag-running">🟢 进行中 · 第7天/共14天</span></h3>
+        <p style="font-size:13px; color:#888; margin-bottom:20px;">圈人规则：育儿期 AND RFM分层=高价值 AND 流失概率>70% &nbsp;|&nbsp; 周期：2024-11-01 ~ 2024-11-14 &nbsp;|&nbsp; 创建人：林雅</p>
+
+        <!-- 三组对比 -->
+        <div class="stats-cards">
+            <div class="card" style="border-top:3px solid #1890ff;">
+                <div class="title">A组 · 10元券 · 780人</div>
+                <div class="num" style="color:#1890ff;">18.2%</div>
+                <div class="title">唤回率 ↑ vs 对照 +11.4pct</div>
+                <div style="margin-top:10px; font-size:13px;">ROI：<b style="color:#52c41a;">3.1 🏆</b>　券成本：¥7,800</div>
+            </div>
+            <div class="card" style="border-top:3px solid #ff7a45;">
+                <div class="title">B组 · 20元券 · 780人</div>
+                <div class="num">24.5%</div>
+                <div class="title">唤回率 ↑ +17.7pct　p&lt;0.05 ✅显著</div>
+                <div style="margin-top:10px; font-size:13px;">ROI：2.2　券成本：¥15,600</div>
+            </div>
+            <div class="card" style="border-top:3px solid #999;">
+                <div class="title">C组 · 对照组 · 1,040人</div>
+                <div class="num" style="color:#999;">6.8%</div>
+                <div class="title">自然唤回率（基准线）</div>
+                <div style="margin-top:10px; font-size:13px;">—　券成本：¥0</div>
+            </div>
+        </div>
+
+        <!-- 趋势图（CSS模拟） -->
+        <div style="margin: 20px 0;">
+            <h4 style="margin-bottom:10px; font-size:14px;">每日唤回率趋势（14天）</h4>
+            <div style="display:flex; align-items:flex-end; gap:6px; height:120px; background:#fafafa; padding:10px; border-radius:6px;">
+                <!-- 每根柱子由两截组成：蓝色=B组，橙色=A组，灰色=对照 -->
+                <div style="flex:1; text-align:center;"><div style="height:8px; background:#bbb; width:100%;"></div><div style="height:4px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:10px; background:#bbb; width:100%;"></div><div style="height:8px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:12px; background:#bbb; width:100%;"></div><div style="height:20px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:14px; background:#bbb; width:100%;"></div><div style="height:34px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:15px; background:#bbb; width:100%;"></div><div style="height:44px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:16px; background:#bbb; width:100%;"></div><div style="height:52px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:17px; background:#bbb; width:100%;"></div><div style="height:58px; background:#1890ff; width:100%;"></div></div>
+                <div style="flex:1; text-align:center;"><div style="height:17px; background:#bbb; width:100%;"></div><div style="height:62px; background:#1890ff; width:100%;"></div></div>
+            </div>
+            <div style="font-size:12px; color:#888; margin-top:6px;">
+                🔵 B组·20元券　🟠 A组·10元券（与蓝色重叠但更低，此处简化展示B组走势）　⬜ C组·对照组基线　｜　第3天起B组开始显著拉开
+            </div>
+        </div>
+
+        <!-- 自动归因结论 -->
+        <div style="background:#fff7f2; border:1px solid #ffd8bf; border-radius:8px; padding:18px; margin-top:10px;">
+            <h4 style="color:#ff7a45; margin-bottom:10px;">🤖 系统自动归因结论建议</h4>
+            <p style="font-size:13px; line-height:1.9;">
+                ① B组唤回率显著优于A组（+6.3pct，p&lt;0.05），但ROI低于A组（2.2 vs 3.1）；<br>
+                ② 交叉分析发现：<b>LTV&gt;¥5,000的高净值用户中，B组ROI达4.8</b>，显著优于其他人群；<br>
+                ③ <b>建议</b>：高LTV用户使用20元券，其余用户使用10元券。该规则可保存为人群包「20元券敏感人群」，供下一轮实验复用。
+            </p>
+            <div style="margin-top:12px;">
+                <a href="create-experiment.html" style="background:#ff7a45; color:white; padding:8px 18px; border-radius:6px; text-decoration:none; font-size:13px; margin-right:10px;">应用建议创建新实验</a>
+                <button onclick="alert('结论已保存至策略库，可被后续实验引用 ✅')" style="background:white; color:#666; border:1px solid #d9d9d9; padding:8px 18px; border-radius:6px; font-size:13px; cursor:pointer;">保存结论至策略库</button>
+            </div>
+        </div>
+
+        <!-- 实验日志 -->
+        <div style="margin-top:20px; font-size:13px; color:#666; line-height:2;">
+            <b>实验日志</b><br>
+            · 第1天　实验启动，三组完成分流<br>
+            · 第3天　B组唤回率首次达到统计显著<br>
+            · 第7天　当前：B组24.5% > A组18.2% > 对照6.8%，实验按计划进行中
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

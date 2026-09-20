@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>创建营销实验 - 母婴零售策略实验平台</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+    .header { background: #2d4d8c; color: white; padding: 15px 30px; font-size: 18px; font-weight: bold; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 30px; }
+
+    /* 步骤条 */
+    .steps { display: flex; justify-content: center; margin-bottom: 30px; gap: 0; }
+    .step { display: flex; align-items: center; font-size: 14px; color: #999; }
+    .step .dot { width: 28px; height: 28px; border-radius: 50%; background: #ddd; color: white; display: flex; align-items: center; justify-content: center; margin-right: 8px; font-size: 13px; }
+    .step.active { color: #ff7a45; font-weight: bold; }
+    .step.active .dot { background: #ff7a45; }
+    .step-line { width: 80px; height: 2px; background: #ddd; margin: 0 15px; }
+    .step.done .dot { background: #52c41a; }
+
+    /* 表单区 */
+    .panel { background: white; border-radius: 8px; padding: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .panel h3 { font-size: 15px; margin-bottom: 18px; color: #2d4d8c; border-left: 4px solid #ff7a45; padding-left: 10px; }
+    .form-row { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+    .form-item { flex: 1; min-width: 240px; }
+    .form-item label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; }
+    .form-item select, .form-item input { width: 100%; padding: 9px 12px; border: 1px solid #d9d9d9; border-radius: 6px; font-size: 13px; }
+    .radio-line { font-size: 13px; color: #555; margin-bottom: 8px; }
+    .hint { background: #f0f7ff; border: 1px solid #bae0ff; border-radius: 6px; padding: 10px 14px; font-size: 13px; color: #2d4d8c; margin-top: 10px; }
+
+    /* 分流表 */
+    .split-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .split-table th { background: #fafafa; padding: 10px; font-size: 13px; text-align: left; border-bottom: 2px solid #eee; }
+    .split-table td { padding: 10px; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+    .tag { padding: 3px 10px; border-radius: 12px; font-size: 12px; display: inline-block; }
+
+    /* 底部按钮 */
+    .footer-btns { text-align: right; }
+    .btn { padding: 10px 26px; border-radius: 6px; font-size: 14px; cursor: pointer; border: none; margin-left: 12px; }
+    .btn-primary { background: #ff7a45; color: white; }
+    .btn-default { background: white; color: #666; border: 1px solid #d9d9d9; }
+    a { color: #1890ff; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="header">🧪 创建营销实验</div>
+
+<div class="container">
+
+    <!-- 步骤指示器 -->
+    <div class="steps">
+        <div class="step active"><span class="dot">1</span>圈选人群</div>
+        <div class="step-line"></div>
+        <div class="step"><span class="dot">2</span>配置策略</div>
+        <div class="step-line"></div>
+        <div class="step"><span class="dot">3</span>实验设置</div>
+    </div>
+
+    <!-- Step 1: 圈人 -->
+    <div class="panel">
+        <h3>Step 1 · 圈选人群（Who）</h3>
+        <div class="radio-line">
+            <label><input type="radio" name="src" checked> 从预警列表带入</label>　
+            <label><input type="radio" name="src"> 手动圈选</label>　
+            <label><input type="radio" name="src"> 使用历史人群包</label>
+        </div>
+        <div class="form-row">
+            <div class="form-item">
+                <label>圈选条件</label>
+                <input value="生命周期 = 育儿期 AND RFM分层 = 高价值 AND 流失概率 > 70%">
+            </div>
+        </div>
+        <div class="hint">📊 人群预估（条件变更实时刷新）：命中 <b>2,600人</b> · 其中高LTV占比 38% · 近90天GMV贡献 ¥41.2万　✅ 满足最小样本量（每组≥520人）</div>
+    </div>
+
+    <!-- Step 2: 策略 -->
+    <div class="panel">
+        <h3>Step 2 · 配置策略（What）</h3>
+        <div class="form-row">
+            <div class="form-item">
+                <label>干预类型（可扩展）</label>
+                <select>
+                    <option>发券策略</option>
+                    <option>文案推送</option>
+                    <option>商品推荐</option>
+                    <option>折扣策略</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <label>触达渠道</label>
+                <select><option>微信小程序推送 + 社群消息</option><option>仅小程序推送</option><option>短信</option></select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-item">
+                <label>券面额</label>
+                <input value="按分组配置：A组¥10 / B组¥20">
+            </div>
+            <div class="form-item">
+                <label>适用品类 / 预算上限</label>
+                <input value="奶粉、辅食　|　预算上限 ¥20,000">
+            </div>
+        </div>
+        <div class="radio-line"><label><input type="radio" name="time" checked> 立即发送</label>　<label><input type="radio" name="time"> 定时发送</label></div>
+    </div>
+
+    <!-- Step 3: 实验设置 -->
+    <div class="panel">
+        <h3>Step 3 · 实验设置（How & Judge）</h3>
+        <table class="split-table">
+            <thead><tr><th>分组</th><th>策略内容</th><th>分流比例</th><th>人数预估</th></tr></thead>
+            <tbody>
+                <tr><td><span class="tag" style="background:#e6f7ff;color:#1890ff;">A组</span></td><td>10元券</td><td>30%</td><td>780人</td></tr>
+                <tr><td><span class="tag" style="background:#fff3e0;color:#ff7a45;">B组</span></td><td>20元券</td><td>30%</td><td>780人</td></tr>
+                <tr><td><span class="tag" style="background:#f5f5f5;color:#888;">C组</span></td><td>对照组（不干预）</td><td>40%</td><td>1,040人</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size:12px; color:#999; margin-top:6px;">✅ 比例合计 100%　|　分流方式：随机分流（用户ID哈希取模）</p>
+
+        <div class="form-row" style="margin-top:16px;">
+            <div class="form-item">
+                <label>北极星指标（成功指标）</label>
+                <select><option>7天内唤回率（7天内产生订单的用户占比）</option><option>首单转化率</option><option>品类GMV增量</option></select>
+            </div>
+            <div class="form-item">
+                <label>护栏指标</label>
+                <select><option>券成本超支率 + 客诉率异常</option><option>退订率</option></select>
+            </div>
+            <div class="form-item">
+                <label>实验周期</label>
+                <input value="14天（2024-11-01 ~ 2024-11-14）">
+            </div>
+        </div>
+        <div class="hint">📐 功效校验：按2,600人、预期提升10pct计算，每组至少需520人，当前分流满足统计检验条件 ✅</div>
+    </div>
+
+    <!-- 底部按钮 -->
+    <div class="footer-btns">
+        <button class="btn btn-default" onclick="alert('草稿已保存 ✅')">保存草稿</button>
+        <a href="experiments.html"><button class="btn btn-primary" onclick="alert('实验已提交审核，可在实验中心查看状态 🟡')">提交审核</button></a>
+        <a href="experiments.html" style="font-size:13px; margin-left:12px;">← 返回实验中心</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+# 母婴零售分析项目依赖 (Python 3.11)
+pandas==3.0.5
+numpy==2.4.6
+scikit-learn==1.9.1
+psycopg2-binary==2.9.13
+SQLAlchemy==2.0.54
+pyecharts==2.1.0
+openpyxl==3.1.5
+prettytable==3.18.0
