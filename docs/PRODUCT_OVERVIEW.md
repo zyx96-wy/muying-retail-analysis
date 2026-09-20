@@ -40,11 +40,8 @@
 | **用户分析列表** | 支持生命周期/客群状态/热门标签多维检索，按「流失概率 × 用户价值」加权排序 |
 | **用户画像详情** | 单用户 360° 视图：品类偏好、订单历史、**咨询-购买-互动全渠道行为时间线** |
 
-<div style="display:flex; gap:8px; flex-wrap:wrap;">
-<img src="docs/figma/01-dashboard.png" width="32%"/>
-<img src="docs/figma/02-user-list.png" width="32%"/>
-<img src="docs/figma/03-user-profile.png" width="32%"/>
-</div>
+
+![用户分析平台.png](docs/figma/用户分析平台.png)
 
 ### 第二部分：营销实验平台
 
@@ -53,13 +50,10 @@
 | **创建营销实验** | 三步向导：圈人（实时人群预估）→ 策略（可配置干预类型）→ 实验设置（分流 + 最小样本量校验） |
 | **实验中心列表** | 实验全景管理，核心指标内联展示，覆盖发券/推送/推荐三类策略 |
 | **实验详情页** | 三组对比卡片、45 天趋势图、**系统自动归因结论与策略优化建议** |
+| **实验运行监控** |护栏指标实时看板：预算水位、客诉阈值、负向指标预警，命中红线自动熔断分流并沉淀熔断记录|
 
-<div style="display:flex; gap:8px; flex-wrap:wrap;">
-<img src="docs/figma/04-create-experiment.png" width="32%"/>
-<img src="docs/figma/05-experiment-list.png" width="32%"/>
-<img src="docs/figma/06-experiment-detail.png" width="32%"/>
-<img src="docs/figma/07-experiment-monitor.png" width="32%"/>
-</div>
+
+![营销实验平台.png](docs/figma/营销实验平台.png)
 
 ---
 
